@@ -13,15 +13,15 @@ import java.util.List;
 public class C04_AramaTesti {
 
     // gerekli ayarlamalari yapip
-    // 3 farkli test method'u olusturun
-    // ve asagidaki testleri farkli test method'larinda calistirin
+
     // 1- testotomasyonu anasayfaya gidin ve anasayfaya gittiginizi test edin
     // 2- phone icin arama yaptirip, arama sonucunda urun bulunabildigini test edin
     // 3- ilk urunu tiklayip, urun isminde case sensitive olmaksizin phone gectigini test edin
     WebDriver driver;
+    List<WebElement> bulunanSonucElementleriList;
 
     @Test
-    public void test01_anasayfaTesti(){
+    public void test01() throws InterruptedException {
 
         // gerekli ayarlamalari yapip
         driver = new ChromeDriver();
@@ -39,29 +39,38 @@ public class C04_AramaTesti {
             System.out.println("Test otomasyonu testi PASSED");
         } else System.out.println("Test otomasyonu testi FAILED");
 
-    }
-
-    @Test
-    public void test02_phoneAramaTesti(){
         // 2- phone icin arama yaptirip,
-        WebElement aramaKutusu = driver.findElement(By.id("global-search"));
+        WebElement aramaKutusu = driver.findElement(By.xpath("//*[@id='global-search']"));
         aramaKutusu.sendKeys("phone" + Keys.ENTER);
 
         //arama sonucunda urun bulunabildigini test edin
-        List<WebElement> bulunanSonucElementleriList =
+        bulunanSonucElementleriList =
                 driver.findElements(By.xpath("//*[@*='prod-img']"));
 
         if (bulunanSonucElementleriList.size()>0){
             System.out.println("phone arama testi PASSED");
         }else System.out.println("phone arama testi FAILED");
-    }
 
-    @Test
-    public void test03_ilkUrunIsimTesti(){
         // 3- ilk urunu tiklayip, urun isminde case sensitive olmaksizin phone gectigini test edin
 
+        bulunanSonucElementleriList.get(0).click();
 
+        WebElement ilkUrunIsimElementi =
+                driver.findElement(By.xpath("//div[@class=' heading-sm mb-4']"));
+
+        String expectedUrunIsimIcerigi = "phone";
+        String actualUrunIsmi = ilkUrunIsimElementi
+                .getText()
+                .toLowerCase();
+
+        if (actualUrunIsmi.contains(expectedUrunIsimIcerigi)){
+            System.out.println("Urun isim testi PASSED");
+        }else System.out.println("Urun isim testi FAILED");
+
+        Thread.sleep(2000);
+        driver.quit();
     }
+
 
 
 }
