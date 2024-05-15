@@ -17,8 +17,8 @@ public class C04_AramaTesti {
     // 1- testotomasyonu anasayfaya gidin ve anasayfaya gittiginizi test edin
     // 2- phone icin arama yaptirip, arama sonucunda urun bulunabildigini test edin
     // 3- ilk urunu tiklayip, urun isminde case sensitive olmaksizin phone gectigini test edin
-    WebDriver driver;
-    List<WebElement> bulunanSonucElementleriList;
+    static WebDriver driver;
+    static List<WebElement> bulunanSonucElementleriList;
 
     @Test
     public void test01() throws InterruptedException {
@@ -39,7 +39,13 @@ public class C04_AramaTesti {
             System.out.println("Test otomasyonu testi PASSED");
         } else System.out.println("Test otomasyonu testi FAILED");
 
+    }
+
+
+    @Test
+    public void test02(){
         // 2- phone icin arama yaptirip,
+        System.out.println(driver.getCurrentUrl());
         WebElement aramaKutusu = driver.findElement(By.xpath("//*[@id='global-search']"));
         aramaKutusu.sendKeys("phone" + Keys.ENTER);
 
@@ -50,8 +56,11 @@ public class C04_AramaTesti {
         if (bulunanSonucElementleriList.size()>0){
             System.out.println("phone arama testi PASSED");
         }else System.out.println("phone arama testi FAILED");
+    }
 
-        // 3- ilk urunu tiklayip, urun isminde case sensitive olmaksizin phone gectigini test edin
+    @Test
+    public void test03() throws InterruptedException {
+    // 3- ilk urunu tiklayip, urun isminde case sensitive olmaksizin phone gectigini test edin
 
         bulunanSonucElementleriList.get(0).click();
 
@@ -70,7 +79,6 @@ public class C04_AramaTesti {
         Thread.sleep(2000);
         driver.quit();
     }
-
 
 
 }
