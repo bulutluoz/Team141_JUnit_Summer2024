@@ -16,6 +16,11 @@ public class C03_JUnitIlkTest {
           biz bu konuda bir ongoruye sahip olamayiz
           ve siralamayi belirleyemeyiz
           (eger method isimleri test01, test02,test03... gibi yazilirsa, bu siralamaya uyar)
+
+          ikinci bir yol olarak
+          class deklarasyonunun ustunde : @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+          her @Test method'unda ise @Order(1) kullanarak
+          istedigimiz siralamada calistirabiliriz
      */
 
     @Test

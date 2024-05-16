@@ -32,7 +32,6 @@ public class C05_CokluTest {
         driver.quit();
     }
 
-
     //Bir test method'unu gecici olarak kullanim disina almak icin @Disabled kullanilabilir
     @Test @Disabled
     public void test01() throws InterruptedException {
