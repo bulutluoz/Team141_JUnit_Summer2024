@@ -9,6 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 
@@ -55,7 +56,16 @@ public class C05_CheckBox {
         // carpinti checkbox'in secili oldugunu test edin
         Assertions.assertTrue(carpintiKutusu.isSelected());
 
+        // seker ve epilepsi kutulari gorunmediginden
+        // driver objesi bu kutulari test EDEMEYEBILIR
+        // bu durumda page down yapmak gerekir
+        Thread.sleep(3000);
+
+
         //	d. Seker ve Epilepsi checkbox’larininin seçili olmadigini test edin
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        Thread.sleep(3000);
 
         WebElement sekerCheckbox = driver.findElement(By.id("hastalikCheck2"));
         WebElement epilepsiCheckbox = driver.findElement(By.id("hastalikCheck7"));
