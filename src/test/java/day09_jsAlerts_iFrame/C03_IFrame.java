@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import utilities.ReusableMethods;
 import utilities.TestBase;
 
+import java.util.List;
+
 public class C03_IFrame extends TestBase {
 
     @Test
@@ -45,11 +47,55 @@ public class C03_IFrame extends TestBase {
         Assertions.assertEquals(expectedUrunismi,actualUrunIsmi);
 
         //4- Sagdaki bolumde gorunen urunler arasinda ‘Men Slim Fit’ içeren en az 1 urun olduğunu test edin
+                // biz soldaki iFrame'in icinde oldugumuzdan
+                // sagdaki iFrame'e gecmek icin ONCE soldakinden cikmaliyiz
+        //driver.switchTo().defaultContent();
+         driver.switchTo().parentFrame();
+
+                // sagdaki iFrame'e gecis yapmak icin 3 adim atmaliyiz
+        WebElement fashionIframe = driver.findElement(By.xpath("(//iframe)[2]"));
+        driver.switchTo().frame(fashionIframe);
+                // artik sagdaki iframe'in icindeyiz
+                // istedigimiz locate'leri yapabiliriz
+        // iframe icindeki tum urunleri bir liste olarak locate ettik
+        List<WebElement> urunIsimElementleri = driver.findElements(By.tagName("p"));
+        // listedeki tum urun isimlerini tek tek ele alip
+        // ‘Men Slim Fit’ iceren var mi kontrol edelim
+
+        boolean menSlimFitVarMi = false;
+
+        for (WebElement eachUrunIsimElementi : urunIsimElementleri
+             ) {
+
+            if (eachUrunIsimElementi.getText().contains("Men Slim Fit")){
+                menSlimFitVarMi = true;
+            }
+        }
+
+        Assertions.assertTrue(menSlimFitVarMi);
+
 
         //5- ‘Fashion’ yazisinin gorunur olduğunu test edin
 
+        WebElement fashionYaziElementi = driver.findElement(By.xpath("//*[text()='Fashion']"));
+
+        Assertions.assertTrue(fashionYaziElementi.isDisplayed());
+
         //6- ‘Here are some products’ yazisinin gorunur olduğunu test edin
 
+            // sagdaki iframe'in icinde oldugumuzdan
+            // here are... yazisini locate edebilmek ve kullanabilmek icin
+            // oncelikle sagdaki iframe'den anasayfaya cikmaliyiz
+
+
+
+        //driver.switchTo().defaultContent(); // nerede oldugu onemli degil, direk anasayfaya gecis yapar
+        driver.switchTo().parentFrame(); // ic ice birden fazla iframe katmani varsa
+                                         // bu komut bizi bir ust katmana cikartir
+                                         // yaptigimiz ornek icin bu iki method'un farki YOK
+
+        WebElement hereAreYaziElementi = driver.findElement(By.xpath("//*[text()='Here are some products.']"));
+        Assertions.assertTrue(hereAreYaziElementi.isDisplayed());
 
         //7- Sayfayi kapatin
         ReusableMethods.bekle(3);
