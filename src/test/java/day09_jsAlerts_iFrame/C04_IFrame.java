@@ -31,9 +31,7 @@ public class C04_IFrame extends TestBase {
             // Textbox'in iframe icinde oldugunu gorduk
             // oncelikle o iframe'e gecis yapalim
 
-
         // *** web sayfasi textbox'a yazmaya izin vermediginden IPTAL
-
 
         WebElement iFrameElementi = driver.findElement(By.xpath("//iframe[@title='Rich Text Area']"));
         driver.switchTo().frame(iFrameElementi);
@@ -44,7 +42,6 @@ public class C04_IFrame extends TestBase {
 
         //	- TextBox’in altinda bulunan “Elemental Selenium” linkinin gorunur oldugunu dogrulayin
         //    ve  yazisini konsolda yazdirin.
-
 
         ReusableMethods.bekle(3);
     }
