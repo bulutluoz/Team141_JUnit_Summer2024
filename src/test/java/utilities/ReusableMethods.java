@@ -1,10 +1,12 @@
 package utilities;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ReusableMethods {
 
@@ -28,5 +30,18 @@ public class ReusableMethods {
         }
 
         return istenenStringList;
+    }
+
+    public static void windowaGec(String hedefUrl, WebDriver driver){
+        Set<String> tumWindowlarWHDleriSeti = driver.getWindowHandles();
+
+        for (String eachWhd : tumWindowlarWHDleriSeti
+        ) {
+            driver.switchTo().window(eachWhd);
+
+            if (driver.getCurrentUrl().equals(hedefUrl)){
+                break;
+            }
+        }
     }
 }
