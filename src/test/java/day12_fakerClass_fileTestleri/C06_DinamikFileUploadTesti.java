@@ -14,9 +14,9 @@ public class C06_DinamikFileUploadTesti extends TestBase {
 
         //1.https://the-internet.herokuapp.com/upload adresine gidelim
         driver.get("https://the-internet.herokuapp.com/upload");
+
         //2.chooseFile butonuna basalim
         //3.day12 altindaki upload.png dosyasini dinamik olarak secelim.
-
 
         String yuklenecekDosyaninDosyaYolu = System.getProperty("user.dir") +
                                                 "/src/test/java/day12_fakerClass_fileTestleri/upload.png";
@@ -41,7 +41,6 @@ public class C06_DinamikFileUploadTesti extends TestBase {
 
         Assertions.assertEquals(expectedYazi,actualYazi);
 
-        ReusableMethods.bekle(2);
 
 
         System.out.println( "user.dir ===>> " + System.getProperty("user.dir"));
