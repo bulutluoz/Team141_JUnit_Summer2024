@@ -89,7 +89,6 @@ public class C02_SeleniumWaits {
         WebElement itsBackElementi =
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
 
-
         Assertions.assertTrue(itsBackElementi.isDisplayed());
 
         driver.quit();
