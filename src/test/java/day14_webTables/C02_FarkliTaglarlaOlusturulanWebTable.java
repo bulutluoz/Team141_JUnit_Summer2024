@@ -66,7 +66,7 @@ public class C02_FarkliTaglarlaOlusturulanWebTable extends TestBase {
         // 3. sutun datalari : [$399.00, $399.00, $399.00, $40.00, $15.00]
 
 
-        // 9. Bir method olusturun, Test sayfasindan satir ve sutun verildiginde datayi yazdirsin
+        // 9. Bir method olusturun, Test sayfasindan satir ve sutun verildiginde datayi dondursun
 
 
         //  10. Tabloda " Category" si Furniture olan urunun fiyatini yazdirin
