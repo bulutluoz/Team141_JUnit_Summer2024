@@ -76,10 +76,42 @@ public class C01_KlasikHTMLWebTable extends TestBase {
 
         //9. Satir ve sutunu parametre olarak alip, hucredeki bilgiyi döndüren bir method olusturun
 
+        System.out.println(getData(4,1)); // Comfortable Gaming Chair
+
+        System.out.println(getData(1,3)); // $399.00
 
         //10. 4.satirdaki category degerinin "Furniture" oldugunu test edin
 
+        String expectedData = "Furniture";
+        String actualData = getData(4,2);
+
+        Assertions.assertEquals(expectedData,actualData);
+
+        // 11. tabloda category'si "Men Fashion" olan urun bulundugunu test edin
+
+        boolean menFashionVarMi = false;
+
+        for (int i = 1; i <=actualSatirSayisi ; i++) {
+
+            if (getData(i,2).equals("Men Fashion")){
+                menFashionVarMi =true;
+            }
+        }
+
+        Assertions.assertTrue(menFashionVarMi);
+
+    }
 
 
+    public String getData(int satirNo , int sutunNo){
+
+        // 4.satir, 1.sutundaki data icin locator :  //tbody/tr[   4  ]/td[   1   ]
+        // dinamik halde yazarsak
+
+        String dinamikXpath = "//tbody/tr["  + satirNo +  "]/td[" + sutunNo + "]";
+
+        WebElement istenenDataElementi = driver.findElement(By.xpath(dinamikXpath));
+
+        return istenenDataElementi.getText();
     }
 }
