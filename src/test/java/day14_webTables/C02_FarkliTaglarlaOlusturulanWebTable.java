@@ -68,7 +68,40 @@ public class C02_FarkliTaglarlaOlusturulanWebTable extends TestBase {
 
         // 9. Bir method olusturun, Test sayfasindan satir ve sutun verildiginde datayi dondursun
 
+        // 3.satir, 2.sutundaki elementi yazdiralim  Furniture
+
+        System.out.println(getCellData(3,2)); // Furniture
+
+        // 1. satir, 4. sutundaki datayi yazdiralim  Go
+
+        System.out.println(getCellData(1,4)); // Go
+
 
         //  10. Tabloda " Category" si Furniture olan urunun fiyatini yazdirin
+        System.out.println("Furniture kategorisindeki urunlerin fiyatlari : "); // $399.00
+
+        for (int i = 1; i <= satirElementleriList.size() ; i++) {
+
+            if (getCellData(i,2).equalsIgnoreCase("Furniture")){
+
+                System.out.println(getCellData(i,3));
+            }
+
+        }
+
     }
+
+
+    public String getCellData(int satirNo , int sutunNo){
+
+        //       //*[@role='trow'] [    2     ] / *[@role ='tdata'] [    2   ]
+
+        String dinamikXPath = "//*[@role='trow'] [" + satirNo + "] / *[@role ='tdata'] [" + sutunNo + "]";
+
+        WebElement istedenCellElementi = driver.findElement(By.xpath(dinamikXPath));
+
+        return istedenCellElementi.getText();
+    }
+
+
 }
