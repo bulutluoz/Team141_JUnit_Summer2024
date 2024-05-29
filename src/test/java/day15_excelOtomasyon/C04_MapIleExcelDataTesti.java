@@ -35,14 +35,14 @@ public class C04_MapIleExcelDataTesti {
         for (int i = 0; i <=sonSatirIndexi ; i++) {
 
             String satirdakiUlkeIsmi = sayfa1
-                    .getRow(i)
-                    .getCell(0)
-                    .toString();
+                                            .getRow(i)
+                                            .getCell(0)
+                                            .toString();
 
             String satirdakiBaskentIsmi = sayfa1
-                    .getRow(i)
-                    .getCell(1)
-                    .toString();
+                                                .getRow(i)
+                                                .getCell(1)
+                                                .toString();
 
             ulkelerVeBaskentlerMapi.put(satirdakiUlkeIsmi,satirdakiBaskentIsmi);
         }
